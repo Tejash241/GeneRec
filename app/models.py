@@ -1,9 +1,6 @@
-# _*_ coding: utf_8 _*_
 from __future__ import unicode_literals
 
 from django.db import models
-
-# Create your models here.
 
 class UserProfile(models.Model):
 	user_id = models.CharField(('userid'), primary_key=True, max_length=10000)
