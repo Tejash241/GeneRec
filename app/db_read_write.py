@@ -253,3 +253,60 @@ def populate_songs_map():
             song = random.choice(song_qs)
             data_dict = {'user': user_qs[u], 'song': song, 'rating': random.choice([3, 4, 5])}
             UserSongMap.objects.create(**data_dict)
+
+
+def format_headers_books(row):
+    headers = []
+    for val in row:
+        if val in ['isbn', 'title', 'average_rating', 'ratings_count', 'image_url']:
+            headers.append(val)
+
+    return headers
+
+
+def format_book_row(row):
+    book_row = []
+    valid_i = [5, 10, 12, 13, 21]
+    for i, val in enumerate(row):
+        if i in valid_i:
+            if not (i == 5 and (val == '' or val is None)):
+                book_row.append(val)
+            else:
+                return None
+
+    return book_row
+
+
+def populate_books_from_csv(file_name):
+    book_counter = 0
+    with open(file_name, 'r') as csvfile:
+        reader = csv.reader(csvfile)
+        for row_id, row in enumerate(reader):
+            if row_id == 0:
+                headers = format_headers_books(row)
+            else:
+                book_row = format_book_row(row)
+                if book_row:
+                    data_dict = dict(zip(headers, book_row))
+                    Book.objects.create(**data_dict)
+
+            book_counter += 1
+            if book_counter > 2000:
+                break
+
+
+def populate_books_map():
+    user_qs = list(UserProfile.objects.filter(extraversion__lt=1, neuroticism__gt=1))
+    book_qs = list(Book.objects.all())
+    for user in user_qs:
+        for x in range(20):
+            book = random.choice(book_qs)
+            data_dict = {'user': user, 'book': book, 'rating': random.choice([2, 3, 4, 5])}
+            UserBookMap.objects.create(**data_dict)
+
+    user_qs = list(UserProfile.objects.filter(anger__gt=3, extraversion__gt=2))
+    for user in user_qs:
+        for x in range(15):
+            book = random.choice(book_qs)
+            data_dict = {'user': user, 'book': book, 'rating': random.choice([2, 3, 4, 5])}
+            UserBookMap.objects.create(**data_dict)

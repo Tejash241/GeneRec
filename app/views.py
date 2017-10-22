@@ -9,8 +9,6 @@ from functions import *
 from recommender import *
 from youtube_api import *
 import genomelink
-from requests_oauthlib import OAuth2Session
-from genomelink import api_base
 import os
 
 
@@ -31,6 +29,35 @@ def index(request):
     user = UserProfile.objects.get(user_id=current_user_id)
     context = {'cid': current_cluster, 'not_registered': False, 'user': user}
     return render(request, 'app/index.html', context)
+
+
+def books(request):
+    if request.session.get('user_id', None) is None:
+        return redirect('login')
+    current_user_id = request.session['user_id']
+    current_cluster = UserProfile.objects.get(user_id=current_user_id).cluster_name
+    other_users_in_cluster = UserProfile.objects.filter(cluster_name=current_cluster)
+    probable_books = set()
+
+    for user in other_users_in_cluster:
+        uid = user.user_id
+        user_books = UserBookMap.objects.filter(user=user)
+        for book in user_books:
+            probable_books.add(book.book)
+
+    probable_books = list(probable_books)
+    shuffle(probable_books)
+    probable_books = probable_books[0:min(4, len(probable_books) - 1)]
+
+    mov = []
+
+    for m in probable_books:
+        url = get_google_book(m.isbn)
+        m.url = url
+        mov.append(m)
+
+    context = {'books': mov}
+    return render(request, 'app/books.html', context)
 
 
 def movies(request):
@@ -56,8 +83,8 @@ def movies(request):
     total = 0
     for m in probable_movies:
         if int(m.vote_average) > 6.5 and total < 4:
-            # img = get_movie_details(m.title)
-            img = 'sdf'
+            img = get_movie_details(m.title)
+            # img = 'sdf'
             if img is not None:
                 m.cover = img
                 mov.append(m)
@@ -108,7 +135,7 @@ def mind(request):
         intel = 3
     else:
         intel = int(user.childhood_intelligence)
-    puzzle = Puzzle.objects.get(difficulty=intel)
+    puzzle = Puzzle.objects.filter(difficulty=intel)[0]
 
     context = {'puzzle': puzzle}
     return render(request, 'app/mind.html', context)

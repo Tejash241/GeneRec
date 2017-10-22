@@ -1,40 +1,38 @@
 {% extends 'base.html' %} {% load staticfiles %} {% load bootstrap %}
-{% block title %} Discover Movies {% endblock title %}
+{% block title %} Awaken The Bibliophile {% endblock title %}
 
 {% block content %}
     <br><br><br>
     <div class="main main-raised">
         <br>
         <h2>
-            <center style="font-family: 'Pacifico'">Discover Movies</center>
+            <center style="font-family: 'Pacifico'">Awaken The Bibliophile</center>
         </h2>
 
-        <center><h3>Hello, up for some entertainment? Here are some suggested Movies for you based on your traits! Do
-            let us know if you enjoy
-            them!</h3></center>
+        <center><h3>Love Books? Here are some suggestions for you!</h3></center>
         <hr class="colored">
 
 
         <br><br><br>
         <div class="row">
 
-            {% for movie in movies %}
+            {% for book in books %}
 
                 <div class="col-md-3">
 
                     <div class="main main-raised">
                         <br>
                         <center>
-                            <img src="{{ movie.cover }}" height="250px"
+                            <img src="{{ book.image_url }}" height="250px"
                                  width="250px">
 
-                            <h3><b>{{ movie.title }}</b></h3>
+                            <h3><b>{{ book.title }}</b></h3>
                         </center>
                         <hr>
                         <h4>
-                            &nbsp; <b>Genre:</b> {{ movie.genres }}<br><br>
-                            &nbsp; <b>Tagline:</b> {{ movie.tagline }}<br><br>
-                            &nbsp; <b>Average IMDb Rating:</b> {{ movie.vote_average }}<br><br>
+                            &nbsp; <b>ISBN:</b> {{ book.isbn }}<br><br>
+                            &nbsp; <b>Average Rating:</b> {{ book.average_rating }}<br><br>
+                              <a href="{{ book.url }}" target="_blank"> &nbsp;Preview on Google Books</a><br>
                         </h4>
 
                     </div>

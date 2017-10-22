@@ -34,6 +34,18 @@
 
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+
+    </script>
+    <script type="text/javascript"
+            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     <style>
 
         hr.colored {
@@ -81,7 +93,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a style="font-family: 'Pacifico';font-weight:100;" class="navbar-brand" href="#"><b>GeneRec</b></a>
+            <a style="font-family: 'Pacifico';font-weight:100;" class="navbar-brand" href="{% url 'index' %}"><b>GeneRec</b></a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -89,7 +101,7 @@
                 <li><a href="{% url 'movies' %}"><i class="material-icons">video_library</i> Discover Movies</a></li>
                 <li><a href="{% url 'music' %}"><i class="material-icons">library_music</i> Discover Music</a></li>
                 <li><a href="{% url 'mind' %}"><i class="material-icons">library_books</i> Enlighten My Mind</a></li>
-                <li><a href="#"><i class="material-icons">local_hospital</i> Maintain My Health</a></li>
+                <li><a href="{% url 'books' %}"><i class="material-icons">local_hospital</i> Awaken The Bibliophile</a></li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -105,7 +117,7 @@
 </nav>
 <!-- end navbar -->
 
-
+<div id="google_translate_element"></div>
 <!-- you can use the class main-raised if you want the main area to be as a page with shadows -->
 
 

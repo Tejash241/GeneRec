@@ -116,3 +116,17 @@ class Puzzle(models.Model):
     difficulty = models.IntegerField()
     hyperlink = models.CharField(max_length=4000)
     image_hyperlink = models.CharField(max_length=4000)
+
+
+class Book(models.Model):
+    title = models.CharField(max_length=10000, null=True, blank=True)
+    isbn = models.CharField(max_length=100, null=True, blank=True)
+    average_rating = models.FloatField(null=True, blank=True)
+    ratings_count = models.IntegerField(null=True, blank=True)
+    image_url = models.CharField(max_length=10000, null=True, blank=True)
+
+
+class UserBookMap(models.Model):
+    user = models.ForeignKey(UserProfile)
+    book = models.ForeignKey(Book)
+    rating = models.IntegerField(null=True, blank=True)
