@@ -90,6 +90,6 @@ class Movie(models.Model):
 
 
 class UserMovieMap(models.Model):
-    movie_id = models.ForeignKey(Movie)
-    user_id = models.ForeignKey(UserProfile)
+    movie = models.ForeignKey(Movie)
+    user = models.ForeignKey(UserProfile)
     rating = models.IntegerField(null=True, blank=True)

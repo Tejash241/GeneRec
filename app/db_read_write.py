@@ -1,8 +1,10 @@
-from app.models import UserProfile, Movie
+from app.models import UserProfile, Movie, UserMovieMap
 from sdhacks.settings import BASE_DIR
 from os.path import join
 import csv
 import json
+import random
+from django.db.models import Q
 
 def get_all_users():
 	return list(UserProfile.objects.values())
@@ -121,3 +123,31 @@ def populate_movies_from_csv(csv_file):
 				this_row = format_row_movies(row)
 				data_dict = dict(zip(headers, this_row))
 				Movie.objects.create(**data_dict)
+
+def populate_movies_map():
+	user_qs = list(UserProfile.objects.filter(conscientiousness__gt=1, openness__gt=1))
+	movie_qs = list(Movie.objects.filter(Q(genres__icontains='Drama')|Q(genres__icontains='Comedy')))
+	for u in range(20):
+		user = random.choice(user_qs)
+		for m in range(30):
+			movie = random.choice(movie_qs)
+			data_dict = {'user':user, 'movie':movie, 'rating':random.choice([3,4,5])}
+			UserMovieMap.objects.create(**data_dict)
+	
+	user_qs = list(UserProfile.objects.filter(anger__gt=2, extraversion__gt=1))
+	movie_qs = list(Movie.objects.filter(Q(genres__icontains='Crime')|Q(genres__icontains='Action')))
+	for u in range(4):
+		user = random.choice(user_qs)
+		for m in range(50):
+			movie = random.choice(movie_qs)
+			data_dict = {'user':user, 'movie':movie, 'rating':random.choice([3,4,5])}
+			UserMovieMap.objects.create(**data_dict)		
+
+	user_qs = list(UserProfile.objects.filter(agreeableness__gt=1, novelty_seeking__gt=3))
+	movie_qs = list(Movie.objects.filter(Q(genres__icontains='Thriller')|Q(genres__icontains='Fantasy')|Q(genres__icontains='Science Fiction')))
+	for u in range(10):
+		user = random.choice(user_qs)
+		for m in range(60):
+			movie = random.choice(movie_qs)
+			data_dict = {'user':user, 'movie':movie, 'rating':random.choice([3,4,5])}
+			UserMovieMap.objects.create(**data_dict)			
