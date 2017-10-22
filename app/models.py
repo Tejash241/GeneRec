@@ -93,3 +93,7 @@ class UserMovieMap(models.Model):
     movie = models.ForeignKey(Movie)
     user = models.ForeignKey(UserProfile)
     rating = models.IntegerField(null=True, blank=True)
+
+class UserMedoids(models.Model):
+    cluster_name = models.CharField(max_length=12)
+    user_id = models.CharField(max_length=10000)

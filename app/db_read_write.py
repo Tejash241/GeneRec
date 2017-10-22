@@ -1,4 +1,4 @@
-from app.models import UserProfile, Movie, UserMovieMap
+from app.models import *
 from sdhacks.settings import BASE_DIR
 from os.path import join
 import csv
@@ -10,7 +10,6 @@ def get_all_users():
 	return list(UserProfile.objects.values())
 
 def get_single_user(user_id):
-
 	return UserProfile.objects.get(user_id=user_id).__dict__
 
 def update_user_cluster(user_id, cluster_name):
@@ -131,7 +130,6 @@ def populate_movies_map():
 		user = random.choice(user_qs)
 		for m in range(30):
 			movie = random.choice(movie_qs)
-			data_dict = {'user':user, 'movie':movie, 'rating':random.choice([3,4,5])}
 			UserMovieMap.objects.create(**data_dict)
 	
 	user_qs = list(UserProfile.objects.filter(anger__gt=2, extraversion__gt=1))
@@ -150,4 +148,12 @@ def populate_movies_map():
 		for m in range(60):
 			movie = random.choice(movie_qs)
 			data_dict = {'user':user, 'movie':movie, 'rating':random.choice([3,4,5])}
-			UserMovieMap.objects.create(**data_dict)			
+			UserMovieMap.objects.create(**data_dict)
+
+def populate_medoids(medoids):
+	UserMedoids.objects.all().delete()
+	for i, med in enumerate(medoids):
+		UserMedoids.objects.create(**{'cluster_name':str(i), 'user_id':med['user_id']})
+
+def get_all_medoids():
+	return list(UserMedoids.objects.values())
