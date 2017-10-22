@@ -1,25 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %} {% load staticfiles %} {% load bootstrap %}
+{% block title %} Home {% endblock title %}
 
-Hello {{ request.session.user_id }}
-{{ cid }}
+{% block content %}
+    <br><br><br>
+    <div class="main main-raised">
+        <br>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-5">
+                <div class="clearfix float-my-children">
 
-{% if not_registered %}
+                    .&nbsp;&nbsp;&nbsp;<img src="{% static 'sdhacks/img/logos.png' %}" height="100" width="100">
+                    <div style="font-family: 'Pacifico'"><h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GeneRec&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+                    </div>
+                    <img src="{% static 'sdhacks/img/logos.png' %}" height="100" width="100">
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        <br>
+        <hr class="colored">
+        <br>
+        <center><h3>Hello, {{ request.session.user_id }}! Discover previously hidden aspects about you based on your
+            Genome
+            Data. A huge world of distinct possibilities lies ahead of you!</h3>
+        </center>
 
-    Hello, you need to authenticate us to use your Genome Data!<br>
-    Please click on this Link: <br>
-    <a href="{{ link }}" class="btn btn-success">Authenticate</a>
-
-{% else %}
 
 
-    Hello, authenticated true
-    {{ user.extraversion }}
-{% endif %}
-</body>
-</html>
+
+        {% if not_registered %}
+            <center>
+                <br><br>
+                <h4>
+                    Hello, you need to authenticate us to use your Genome Data!<br>
+                    Please click on this Link: <br>
+                    <a href="{{ link }}" class="btn btn-success">Authenticate</a><br>
+                    Thank you!
+                </h4>
+            </center>
+        {% else %}
+
+            <center><br><br>
+                <h3><b>Explore the following areas:</b></h3><br></center>
+            <br><br><br>
+            <div class="row">
+
+
+                <div class="col-md-4">
+                    <div class="main main-raised">
+                        <br>
+                        <center>
+                            <a href="{% url 'movies' %}"><img
+                                    src="https://az616578.vo.msecnd.net/files/2017/02/26/636237341865706889-619832852_movies.jpg"
+                                    height="250px" width="250px"></a>
+
+                            <h3><b>Discover Movies</b></h3>
+                        </center>
+                        <hr>
+
+                    </div>
+                    <br><br><br><br>
+                </div>
+                <div class="col-md-4">
+                    <div class="main main-raised">
+                        <br>
+                        <center>
+                            <a href="{% url 'music' %}"><img
+                                    src="http://cdn1.theodysseyonline.com/files/2015/12/19/6358614596527738711752945771_music.jpg"
+                                    height="250px" width="250px"></a>
+
+                            <h3><b>Discover Music</b></h3>
+                        </center>
+                        <hr>
+
+                    </div>
+                    <br><br><br><br>
+                </div>
+                <div class="col-md-4">
+                    <div class="main main-raised">
+                        <br>
+                        <center>
+                            <a href="{% url 'mind' %}"><img
+                                    src="http://www.enlightenedquest.ch/wp-content/uploads/2016/01/power-of-the-mind-Wallpaper__yvt2.jpg"
+                                    height="250px" width="250px"></a>
+
+                            <h3><b>Enlighten Your Mind!</b></h3>
+                        </center>
+                        <hr>
+
+                    </div>
+                    <br><br><br><br>
+                </div>
+
+            </div>
+        {% endif %}
+        <br><br><br><br><br>
+    </div>
+
+{% endblock content %}

@@ -9,73 +9,34 @@
             <center style="font-family: 'Pacifico'">Discover Music</center>
         </h2>
 
-        <center><h3>Hello, here is some suggested Music for you based on your traits! Do let us know if you enjoy
-            them!</h3></center>
+        <center><h3>Hello, up for some entertainment? Here are some suggested Songs for you based on your traits! Do
+            let us know if you enjoy them!</h3></center>
         <hr class="colored">
 
 
         <br><br><br>
         <div class="row">
-            <div class="col-md-3">
 
-                <div class="main main-raised">
-                    <br>
-                    <center>
-                        <img src="https://i.scdn.co/image/2f91c3cace3c5a6a48f3d0e2fd21364d4911b332" height="250px"
-                             width="250px">
+            {% for song in music %}
 
-                        <h3><b>Iron Maiden</b></h3>
-                    </center>
-                    <hr>
-                    Genre: ABC
+                <div class="col-md-3">
 
+                    <div class="main main-raised">
+                        <br>
+                        <center>
+                              <iframe src="{{ song.link }}"
+   width="270" height="250" frameborder="0" allowfullscreen></iframe>
+
+                            <h3><b>{{ song.artist }} - {{ song.name }}</b></h3>
+                        </center>
+                        <hr>
+
+                    </div>
+                    <br><br><br><br>
                 </div>
-            </div>
-            <div class="col-md-3">
 
-                <div class="main main-raised">
-                    <br>
-                    <center>
-                        <img src="https://i.scdn.co/image/7d0ec00334f74076dbfc12902d70b74557c4cefd" height="250px"
-                             width="250px">
 
-                        <h3><b>Iron Maiden</b></h3>
-                    </center>
-                    <hr>
-                    Genre: ABC
-
-                </div>
-            </div>
-            <div class="col-md-3">
-
-                <div class="main main-raised">
-                    <br>
-                    <center>
-                        <img src="https://i.scdn.co/image/eb266625dab075341e8c4378a177a27370f91903" height="250px"
-                             width="250px">
-
-                        <h3><b>Iron Maiden</b></h3>
-                    </center>
-                    <hr>
-                    Genre: ABC
-
-                </div>
-            </div>
-            <div class="col-md-3">
-
-                <div class="main main-raised">
-                    <br>
-                    <center>
-                        <img src="https://i.scdn.co/image/eb266625dab075341e8c4378a177a27370f91903" height="250px"
-                             width="250px">
-
-                        <h3><b>Iron Maiden</b></h3>
-                    </center>
-                    <hr>
-                    Genre: ABC
-
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 

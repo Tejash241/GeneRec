@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^register/', views.register, name='register'),
     url(r'^authenticate/', views.authenticate, name='authenticate'),
     url(r'^callback/', views.callback, name='callback'),
+    url(r'^mind/', views.mind, name='mind'),
 
 ]

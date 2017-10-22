@@ -99,15 +99,20 @@ class UserMovieMap(models.Model):
 class UserMedoids(models.Model):
     cluster_name = models.CharField(max_length=12)
     user_id = models.CharField(max_length=10000)
-<<<<<<< HEAD
-=======
+
 
 class Song(models.Model):
     name = models.CharField(max_length=10000, null=True, blank=True)
     artist = models.CharField(max_length=10000, null=True, blank=True)
 
+
 class UserSongMap(models.Model):
     user = models.ForeignKey(UserProfile)
     song = models.ForeignKey(Song)
     rating = models.IntegerField(null=True, blank=True)
->>>>>>> 41b1d84b3fd08207de2ab986d4f72a1fada1170b
+
+
+class Puzzle(models.Model):
+    difficulty = models.IntegerField()
+    hyperlink = models.CharField(max_length=4000)
+    image_hyperlink = models.CharField(max_length=4000)

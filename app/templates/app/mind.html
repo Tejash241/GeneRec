@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% load staticfiles %} {% load bootstrap %}
+{% block title %} Enlighten Your Mind {% endblock title %}
+
+{% block content %}
+    <br><br><br>
+    <div class="main main-raised">
+        <br>
+        <h2>
+            <center style="font-family: 'Pacifico'">Enlighten Your Mind</center>
+        </h2>
+
+        <center><h3>So you want to jog your brains? Try your hand at these hand-picked puzzles for you!</h3></center>
+        <hr class="colored">
+
+
+        <br><br><br>
+        <div class="row">
+
+            <div class="col-md-4"></div>
+
+            <div class="col-md-4">
+
+                <div class="main main-raised">
+                    <br>
+                    <center>
+                        <img src="{{ puzzle.image_hyperlink }}" width="250px" height="250px">
+
+                        <h3><b><a href="{{ puzzle.hyperlink }}" target="_blank">Solve!</a> </b></h3>
+                    </center>
+                    <hr>
+
+                </div>
+                <br><br><br><br>
+            </div>
+
+            <div class="col-md-4"></div>
+
+        </div>
+    </div>
+
+{% endblock content %}
+

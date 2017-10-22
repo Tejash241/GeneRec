@@ -9,3 +9,6 @@ from .models import *
 admin.site.register(UserProfile)
 admin.site.register(Movie)
 admin.site.register(UserMovieMap)
+admin.site.register(Song)
+admin.site.register(UserSongMap)
+admin.site.register(Puzzle)

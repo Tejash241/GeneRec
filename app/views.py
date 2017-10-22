@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import *
 from django.contrib import messages
 from random import shuffle
 from functions import *
+from recommender import *
+from youtube_api import *
 import genomelink
 from requests_oauthlib import OAuth2Session
 from genomelink import api_base
@@ -68,8 +70,48 @@ def movies(request):
 def music(request):
     if request.session.get('user_id', None) is None:
         return redirect('login')
-    context = {}
+    current_user_id = request.session['user_id']
+    current_cluster = UserProfile.objects.get(user_id=current_user_id).cluster_name
+    other_users_in_cluster = UserProfile.objects.filter(cluster_name=current_cluster)
+    probable_songs = set()
+
+    for user in other_users_in_cluster:
+        uid = user.user_id
+        user_songs = UserSongMap.objects.filter(user=user)
+        print len(user_songs)
+        for song in user_songs:
+            probable_songs.add(song.song)
+
+    probable_songs = list(probable_songs)
+    shuffle(probable_songs)
+    probable_songs = probable_songs[0:min(4, len(probable_songs) - 1)]
+    print probable_songs
+    mov = []
+    for m in probable_songs:
+        url = get_youtube_video(m.artist + "-" + m.name)
+
+        if url is not None:
+            link = 'https://www.youtube.com/embed/' + url
+            m.link = link
+            mov.append(m)
+
+    context = {'music': mov}
     return render(request, 'app/music.html', context)
+
+
+def mind(request):
+    if request.session.get('user_id', None) is None:
+        return redirect('login')
+    current_user_id = request.session['user_id']
+    user = UserProfile.objects.get(user_id=current_user_id)
+    if user.childhood_intelligence is None:
+        intel = 3
+    else:
+        intel = int(user.childhood_intelligence)
+    puzzle = Puzzle.objects.get(difficulty=intel)
+
+    context = {'puzzle': puzzle}
+    return render(request, 'app/mind.html', context)
 
 
 def login(request):
@@ -153,6 +195,8 @@ def callback(request):
         setattr(user, attr, value)
         user.authenticated = 1
     user.save()
+
+    assign_cluster_to_newuser(user)
 
     return redirect('index')
 
