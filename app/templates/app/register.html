@@ -1,0 +1,67 @@
+{% extends 'base.html' %} {% load staticfiles %} {% load bootstrap %}
+
+
+{% block content %}
+    <br><br><br>
+    <div class="main main-raised">
+        <br>
+        <h2>
+            <center style="font-family: 'Pacifico'">Register</center>
+        </h2>
+
+        <center><h3>Hey! It is really exciting to see you join our network! Welcome Aboard!</h3></center>
+        <hr class="colored">
+
+
+        {% if messages %}
+            <div class="container">
+                <br> {% for message in messages %}
+                <div class="alert alert-dismissible alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">&times; &nbsp;</button>
+                    <strong>{{ message }}</strong>
+                </div>
+            {% endfor %}
+            </div>
+
+        {% endif %}
+
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+
+                <form action="" method="post" class="form-horizontal">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="user_id" class=" control-label">User ID: </label>
+                        <input type="user_id" name="user_id" class="form-control"
+                               placeholder="Enter your User ID">
+
+                    </div>
+                    <div class="form-group ">
+                        <label for="user_id" class=" control-label">Password: </label>
+                        <input type="password" name="password" class="form-control"
+                               placeholder="Enter your Password">
+
+                    </div>
+
+                    <h6>By signing up, you agree that it is okay to use your Genome Data for statistics.</h6>
+                    <div class="row">
+
+                        <!-- /.col -->
+                        <center>
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                            <br><br>
+                        </center>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock content %}

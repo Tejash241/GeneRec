@@ -1,0 +1,92 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <title>GeneRec | {% block title %} {% endblock title %}</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+
+    <!-- CSS Files -->
+    <link href="{% static 'sdhacks/css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'sdhacks/css/material-kit.css' %}" rel="stylesheet"/>
+
+    <!--   Core JS Files   -->
+    <script src="{% static 'sdhacks/js/jquery.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'sdhacks/js/bootstrap.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'sdhacks/js/material.min.js' %}"></script>
+
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="{% static 'sdhacks/js/nouislider.min.js' %}" type="text/javascript"></script>
+
+    <!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
+    <script src="{% static 'sdhacks/js/bootstrap-datepicker.js' %}" type="text/javascript"></script>
+
+    <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
+    <script src="{% static 'sdhacks/js/material-kit.js' %}" type="text/javascript"></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+    <style>
+
+        hr.colored {
+            border: 0; /* in order to override TWBS stylesheet */
+            height: 5px;
+
+            background: -moz-linear-gradient(left, rgba(196, 222, 138, 1) 0%, rgba(196, 222, 138, 1) 12.5%, rgba(145, 253, 22, 19) 12.5%, rgba(245, 253, 212, 1) 25%, rgba(255, 208, 132, 1) 25%, rgba(255, 208, 132, 1) 37.5%, rgba(242, 122, 107, 1) 37.5%, rgba(242, 122, 107, 1) 50%, rgba(223, 157, 185, 1) 50%, rgba(223, 157, 185, 1) 62.5%, rgba(192, 156, 221, 1) 62.5%, rgba(192, 156, 221, 1) 75%, rgba(95, 156, 217, 1) 75%, rgba(95, 156, 217, 1) 87.5%, rgba(94, 190, 227, 1) 87.5%, rgba(94, 190, 227, 1) 87.5%, rgba(94, 190, 227, 1) 100%); /* FF3.6+ */
+            background: -webkit-linear-gradient(left, rgba(196, 222, 138, 1) 0%, rgba(196, 222, 138, 1) 12.5%, rgba(245, 253, 22, 19) 12.5%, rgba(245, 253, 212, 1) 25%, rgba(255, 208, 132, 1) 25%, rgba(255, 208, 132, 1) 37.5%, rgba(242, 122, 107, 1) 37.5%, rgba(242, 122, 107, 1) 50%, rgba(223, 157, 185, 1) 50%, rgba(223, 157, 185, 1) 62.5%, rgba(192, 156, 221, 1) 62.5%, rgba(192, 156, 221, 1) 75%, rgba(95, 156, 217, 1) 75%, rgba(95, 156, 217, 1) 87.5%, rgba(94, 190, 227, 1) 87.5%, rgba(94, 190, 227, 1) 87.5%, rgba(94, 190, 227, 1) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(left, rgba(196, 222, 138, 1) 0%, rgba(196, 222, 138, 1) 12.5%, rgba(145, 253, 22, 19) 12.5%, rgba(245, 253, 212, 1) 25%, rgba(255, 208, 132, 1) 25%, rgba(255, 208, 132, 1) 37.5%, rgba(242, 122, 107, 1) 37.5%, rgba(242, 122, 107, 1) 50%, rgba(223, 157, 185, 1) 50%, rgba(223, 157, 185, 1) 62.5%, rgba(192, 156, 221, 1) 62.5%, rgba(192, 156, 221, 1) 75%, rgba(95, 156, 217, 1) 75%, rgba(95, 156, 217, 1) 87.5%, rgba(94, 190, 227, 1) 87.5%, rgba(94, 190, 227, 1) 87.5%, rgba(94, 190, 227, 1) 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(left, rgba(196, 222, 138, 1) 0%, rgba(196, 222, 138, 1) 12.5%, rgba(145, 253, 22, 19) 12.5%, rgba(245, 253, 212, 1) 25%, rgba(255, 208, 132, 1) 25%, rgba(255, 208, 132, 1) 37.5%, rgba(242, 122, 107, 1) 37.5%, rgba(242, 122, 107, 1) 50%, rgba(223, 157, 185, 1) 50%, rgba(223, 157, 185, 1) 62.5%, rgba(192, 156, 221, 1) 62.5%, rgba(192, 156, 221, 1) 75%, rgba(95, 156, 217, 1) 75%, rgba(95, 156, 217, 1) 87.5%, rgba(94, 190, 227, 1) 87.5%, rgba(94, 190, 227, 1) 87.5%, rgba(94, 190, 227, 1) 100%); /* IE10+ */
+            background: linear-gradient(to right, rgba(196, 222, 138, 1) 0%, rgba(196, 222, 138, 1) 12.5%, rgba(145, 253, 22, 19) 12.5%, rgba(245, 253, 212, 1) 25%, rgba(255, 208, 132, 1) 25%, rgba(255, 208, 132, 1) 37.5%, rgba(242, 122, 107, 1) 37.5%, rgba(242, 122, 107, 1) 50%, rgba(223, 157, 185, 1) 50%, rgba(223, 157, 185, 1) 62.5%, rgba(192, 156, 221, 1) 62.5%, rgba(192, 156, 221, 1) 75%, rgba(95, 156, 217, 1) 75%, rgba(95, 156, 217, 1) 87.5%, rgba(94, 190, 227, 1) 87.5%, rgba(94, 190, 227, 1) 87.5%, rgba(94, 190, 227, 1) 100%); /* W3C */
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar will come here -->
+<nav class="navbar navbar-danger" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a style="font-family: 'Pacifico';font-weight:100;" class="navbar-brand" href="#"><b>GeneRec</b></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#"><i class="material-icons">video_library</i> Discover Movies</a></li>
+                <li><a href="#"><i class="material-icons">library_music</i> Discover Music</a></li>
+                <li><a href="#"><i class="material-icons">library_books</i> Enlighten My Mind</a></li>
+                <li><a href="#"><i class="material-icons">local_hospital</i> Maintain My Health</a></li>
+                <li><a href="#"><i class="material-icons">restaurant</i> Feed My Belly</a></li>
+                <li><a href="#profile"><i class="material-icons">face</i>Profile</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><i class="material-icons">exit_to_app</i> Sign Out</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- end navbar -->
+
+
+<!-- you can use the class main-raised if you want the main area to be as a page with shadows -->
+
+
+<!-- here you can add your content -->
+{% block content %}{% endblock content %}
+
+
+</body>
+</html>

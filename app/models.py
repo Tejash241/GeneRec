@@ -74,3 +74,4 @@ class UserProfile(models.Model):
     alcohol_drinking_behavior = models.IntegerField(default=0)
     agreeableness = models.IntegerField(default=0)
     cluster_name = models.CharField(max_length=10000, null=True, blank=True)
+    password = models.CharField(max_length=10000)
