@@ -9,7 +9,7 @@ def get_youtube_video(search_query):
 		resp = requests.get(youtube_api_url+search_query)
 		if resp.ok:
 			json_resp = json.loads(resp.content)
-			return json_resp
+			return json_resp['items'][0]['id']['videoId']
 		else:
 			print 'response is not ok', resp
 			return None
