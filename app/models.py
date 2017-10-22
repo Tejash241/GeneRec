@@ -97,3 +97,12 @@ class UserMovieMap(models.Model):
 class UserMedoids(models.Model):
     cluster_name = models.CharField(max_length=12)
     user_id = models.CharField(max_length=10000)
+
+class Song(models.Model):
+    name = models.CharField(max_length=10000, null=True, blank=True)
+    artist = models.CharField(max_length=10000, null=True, blank=True)
+
+class UserSongMap(models.Model):
+    user = models.ForeignKey(UserProfile)
+    song = models.ForeignKey(Song)
+    rating = models.IntegerField(null=True, blank=True)

@@ -130,6 +130,7 @@ def populate_movies_map():
 		user = random.choice(user_qs)
 		for m in range(30):
 			movie = random.choice(movie_qs)
+			data_dict = {'user':user, 'movie':movie, 'rating':random.choice([3,4,5])}
 			UserMovieMap.objects.create(**data_dict)
 	
 	user_qs = list(UserProfile.objects.filter(anger__gt=2, extraversion__gt=1))
@@ -157,3 +158,39 @@ def populate_medoids(medoids):
 
 def get_all_medoids():
 	return list(UserMedoids.objects.values())
+
+
+def populate_songs_from_txt(txt_file):
+	line_counter = 0
+	with open(txt_file, 'r') as txtfile:
+		for line in txtfile:
+			id1, id2, artist, name = line.split('<SEP>')
+			Song.objects.create(**{'name':name, 'artist':artist})
+			line_counter += 1
+			if line_counter > 10000:
+				break
+
+def populate_songs_map():
+	user_qs = list(UserProfile.objects.filter(anger__gt=3, extraversion__gt=2))
+	song_qs = list(Song.objects.filter(Q(name__icontains='Punk')|Q(name__icontains='Rock')|Q(name__icontains='Death')))
+	for u in range(len(user_qs)):
+		for s in range(40):
+			song = random.choice(song_qs)
+			data_dict = {'user':user_qs[u], 'song':song, 'rating':random.choice([3,4,5])}
+			UserSongMap.objects.create(**data_dict)
+
+	user_qs = list(UserProfile.objects.filter(agreeableness__gt=2, novelty_seeking__gt=2))
+	song_qs = list(Song.objects.filter(Q(name__icontains='Calm')|Q(name__icontains='Love')|Q(name__icontains='Sleep'))) 
+	for u in range(len(user_qs)):
+		for s in range(50):
+			song = random.choice(song_qs)
+			data_dict = {'user':user_qs[u], 'song':song, 'rating':random.choice([3,4,5])}
+			UserSongMap.objects.create(**data_dict)
+
+	user_qs = list(UserProfile.objects.filter(conscientiousness__gt=3))
+	song_qs = list(Song.objects.filter(Q(name__icontains='Life')|Q(name__icontains='Goal'))) 
+	for u in range(len(user_qs)):
+		for s in range(25):
+			song = random.choice(song_qs)
+			data_dict = {'user':user_qs[u], 'song':song, 'rating':random.choice([3,4,5])}
+			UserSongMap.objects.create(**data_dict)	
