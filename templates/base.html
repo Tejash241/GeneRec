@@ -73,7 +73,12 @@
                 <li><a href="#profile"><i class="material-icons">face</i>Profile</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><i class="material-icons">exit_to_app</i> Sign Out</a></li>
+                {% if request.session.user_id %}
+                    <li><a href="{% url 'logout' %}"><i class="material-icons">exit_to_app</i> Sign Out</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}"><i class="material-icons">exit_to_app</i> Log In</a></li>
+                    <li><a href="{% url 'register' %}"><i class="material-icons">exit_to_app</i> Register</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>

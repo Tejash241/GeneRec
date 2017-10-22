@@ -73,6 +73,7 @@ class UserProfile(models.Model):
     cluster_name = models.CharField(max_length=10000, null=True, blank=True)
     password = models.CharField(max_length=10000, default='pass', null=False, blank=False)
     cluster_name = models.CharField(max_length=10000, null=True, blank=True)
+    authenticated = models.IntegerField(default=0)
 
 
 class Movie(models.Model):
@@ -93,6 +94,7 @@ class UserMovieMap(models.Model):
     movie = models.ForeignKey(Movie)
     user = models.ForeignKey(UserProfile)
     rating = models.IntegerField(null=True, blank=True)
+
 
 class UserMedoids(models.Model):
     cluster_name = models.CharField(max_length=12)

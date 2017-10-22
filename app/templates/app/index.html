@@ -7,5 +7,19 @@
 <body>
 
 Hello {{ request.session.user_id }}
+{{ cid }}
+
+{% if not_registered %}
+
+    Hello, you need to authenticate us to use your Genome Data!<br>
+    Please click on this Link: <br>
+    <a href="{{ link }}" class="btn btn-success">Authenticate</a>
+
+{% else %}
+
+
+    Hello, authenticated true
+    {{ user.extraversion }}
+{% endif %}
 </body>
 </html>
