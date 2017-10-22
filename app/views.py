@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 from django.shortcuts import *
 from django.http import HttpResponse
@@ -65,3 +66,4 @@ def logout(request):
     del request.session['user_id']
     context = {}
     return redirect('login')
+
