@@ -2,7 +2,7 @@ import requests
 import httplib
 import json
 
-youtube_api_url = 'https://www.googleapis.com/youtube/v3/search?id=7lCDEYXw3mM&key=AIzaSyBNUAfQhQwn07Q8ge6mpiUTodLV6av6z8U&part=snippet&type=video&videoEmbeddable=true&maxResults=1&q='
+youtube_api_url = 'https://www.googleapis.com/youtube/v3/search?id=7lCDEYXw3mM&key=<API KEY>&part=snippet&type=video&videoEmbeddable=true&maxResults=1&q='
 
 
 def get_youtube_video(search_query):
