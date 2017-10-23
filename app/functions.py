@@ -26,7 +26,7 @@ def get_auth_url():
     return authorize_url
 
 
-youtube_api_url = 'https://www.googleapis.com/books/v1/volumes?key=AIzaSyBNUAfQhQwn07Q8ge6mpiUTodLV6av6z8U&q=isbn%3A+'
+youtube_api_url = 'https://www.googleapis.com/books/v1/volumes?key=<API key>&q=isbn%3A+'
 
 
 def get_google_book(search_query):
