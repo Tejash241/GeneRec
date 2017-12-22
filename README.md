@@ -40,3 +40,4 @@ Real-time integration for Netflix, Spotify/Youtube \
 # References
 [1] https://works.bepress.com/timothy_thomason/108/download/
 [2] https://en.wikipedia.org/wiki/Big_Five_personality_traits
+[3] https://medium.com/@awakens/genome-link-api-challenge-sd-hacks-2017-cee5fe079a5b
